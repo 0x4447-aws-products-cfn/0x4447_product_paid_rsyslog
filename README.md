@@ -2,6 +2,18 @@
 
 A rsyslog server created for ease of use, lower AWS costs, and help dev teams debug their software in a secure way with limited access to critical servers.
 
+# How to configure the Rsyslog Client
+
+We have a bash script that will configure the Rsyslog on our client server automatically for you. Meaning after you run this script you should start seeing logs coming in to the `rsyslog-server`.
+
+```sh
+curl -o- https://0x4447-drive-products.s3.amazonaws.com/rsyslog-server/client-setup.sh IP_OR_DNS_TO_THE_RSYSLOGSERVER | bash
+```
+
+```sh
+wget -qO- https://0x4447-drive-products.s3.amazonaws.com/rsyslog-server/client-setup.sh IP_OR_DNS_TO_THE_RSYSLOGSERVER | bash
+```
+
 # DISCLAIMER!
 
 This stack is available to anyone at no cost, but on an as-is basis. 0x4447, LLC is not responsible for damages or costs of any kind that may occur when you use the stack. You take full responsibility when you use it.
