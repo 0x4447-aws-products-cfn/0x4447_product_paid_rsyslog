@@ -1,0 +1,60 @@
+{
+    "EC2Instance": {
+        "Type" : "AWS::EC2::Instance",
+        "Properties" : {
+            "InstanceType" : "t2.nano",
+            "ImageId": { "Fn::FindInMap": ["OSIDs", {"Ref": "AWS::Region"}, "64"] },
+            "KeyName" : { "Ref": "KeyNameParam"},
+            "IamInstanceProfile": { "Ref": "ECSInstanceProfile" },
+            "UserData": { "Fn::Base64": { "Fn::Join": ["\n", [
+
+                { "Fn::Sub": "sudo /opt/aws/bin/cfn-init -v --region ${AWS::Region} --stack ${AWS::StackName} --resource EC2Instance" },
+
+                { "Fn::Sub": "sudo /opt/aws/bin/cfn-signal -s true --region ${AWS::Region} --stack ${AWS::StackName} --resource EC2Instance" }
+
+            ]]}},
+            "NetworkInterfaces": [ {
+                "AssociatePublicIpAddress": "true",
+                "DeviceIndex": "0",
+                "GroupSet": [{ "Ref" : "EC2SecurityGroup" }],
+                "SubnetId": { "Ref" : "VPCSubnetsParam" }
+            }],
+            "Tags": [
+                {
+                    "Key" : "Name",
+                    "Value" : "rsyslog-server"
+                },
+                {
+                    "Key" : "Description",
+                    "Value" : "Collect logs across servers to help the dev team debug remote software."
+                },
+                {
+                    "Key" : "Author",
+                    "Value" : "0x4447 LLC"
+                },
+                {
+                    "Key" : "Info",
+                    "Value" : "https://0x4447.com"
+                }
+            ]
+        },
+        "Metadata": {
+            "AWS::CloudFormation::Init" : {
+                "config" : {
+                    "services": {
+                        "sysvinit": {
+                            "cfn-hup": {
+                                "enabled": true,
+                                "ensureRunning": true,
+                                "files": [
+                                    "/etc/cfn/cfn-hup.conf",
+                                    "/etc/cfn/hooks.d/cfn-auto-reloader.conf"
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

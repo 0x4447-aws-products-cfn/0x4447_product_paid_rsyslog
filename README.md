@@ -2,6 +2,29 @@
 
 A rsyslog server created for ease of use, lower AWS costs, and help dev teams debug their software in a secure way with limited access to critical servers.
 
+# Overview
+
+This stack uses a pre-configured AMI custom made by 0x4447, LLC. With Rsyslog setup in a way where the logs have a retention period of 30 days, and the logs are organized in folders with using the host name of the client server. All the logs are stored in the default folder path `/var/log`
+
+Once the server is deployed, give your developer the ssh key to access the, and this is it.
+
+# How to deploy
+
+<a target="_blank" href="https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=zer0x4447-rsyslog-server&templateURL=https://s3.amazonaws.com/0x4447-drive-cloudformation/rsyslog-server.json">
+<img align="left" style="float: left; margin: 0 10px 0 0;" src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"></a>
+
+All you need to do to deploy this stack is click the button to the left and follow the instructions that CloudFormation provides in your AWS Dashboard. Alternatively you can download the CF file from [here](https://s3.amazonaws.com/0x4447-drive-cloudformation/rsyslog-server.json).
+
+# What will deploy?
+
+![rsyslog-server](https://raw.githubusercontent.com/0x4447/0x4447_product_rsyslog/assets/diagram.png)
+
+The stack takes advantage of EC2.
+
+- 1x EC2 Instance
+- 1x Security Group
+- 1x EBS
+
 # How to configure the Rsyslog Client
 
 We have a bash script that will configure the Rsyslog on our client server automatically for you. Meaning after you run this script you should start seeing logs coming in to the `rsyslog-server`.

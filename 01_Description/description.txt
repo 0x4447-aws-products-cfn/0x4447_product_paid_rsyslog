@@ -1,0 +1,1 @@
+A rsyslog server created for ease of use, lower AWS costs, and help dev teams debug their software in a secure way with limited access to critical servers.

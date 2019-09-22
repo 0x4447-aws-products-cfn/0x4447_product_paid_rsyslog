@@ -1,0 +1,19 @@
+{
+	"AWS::CloudFormation::Interface" : {
+		"ParameterGroups": [
+			{
+				"Label" : { "default" : "Access" },
+				"Parameters" : [ "KeyNameParam" ]
+			},
+			{
+				"Label" : { "default" : "VPC" },
+				"Parameters" : [ "VPCParam", "VPCSubnetsParam"]
+			}
+		],
+		"ParameterLabels": {
+			"KeyNameParam": { "default" : "EC2 Private Key" },
+			"VPCParam": { "default" : "VPC ID" },
+			"VPCSubnetsParam": { "default" : "VPC Public Subnet" }
+		}
+	}
+}

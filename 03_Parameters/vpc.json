@@ -1,0 +1,6 @@
+{
+	"VPCParam": {
+		"Description": "The VPC ID where the EC2 Instance should be deployed in to.",
+		"Type": "AWS::EC2::VPC::Id"
+	}
+}
