@@ -47,19 +47,19 @@ All logs are sent over an encrypted connection thanks to an SSL certificate whic
 1. Copy the cert to your local computer
 
 ```
-scp 0x4447_marketplace_server:/etc/ssl/ca-cert.pem .
+scp RSYSLOG_SERVER:/etc/ssl/ca-cert.pem .
 ```
 
 1. Upload the cert to the client server in the `tmp` folder
 
 ```
-scp ca-cert.pem 0x4447_marketplace_client:/tmp
+scp ca-cert.pem CLIENT:/tmp
 ```
 
 1. Move the cert I the final location using `sudo` since SCP dose not support running commands using `sudo`.
 
 ```
-ssh 0x4447_marketplace_client sudo mv /tmp/ca-cert.pem /etc/ssl
+ssh CLIENT sudo mv /tmp/ca-cert.pem /etc/ssl
 ```
 
 ### How to configure the Rsyslog Client
