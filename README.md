@@ -1,12 +1,25 @@
-# 🛣 Rsyslog
+# 🛰 Rsyslog-Server
 
-A rsyslog server created for ease of use, lower AWS costs, and help dev teams debug their software in a secure way with limited access to critical servers.
+Collecting logs is useful for many things, but some time very expensive if you use manger Cloud solutions, like CloudWatch. It seams ease end convenient but once you start sending thousands of entires a day your AWS bill will inflate dramatically for such a simple thing. Of course there are use cases where the features of CloudWatch outlay the price, but in some cases you just want to see what the OS or your app is generating to debug issues. And or that you don't need anything fancy. 
+
+We preconfigured an AMI with rsyslog to act as a log collection server and be the centralized place where you can get in, check the logs of all the clients, and find out the problem.
+
+The AMI price is affordable and the total cost fixed, no matter how many logs do you send. 
 
 # Overview
 
-This stack uses a pre-configured AMI custom made by 0x4447, LLC. With Rsyslog setup in a way where the logs have a retention period of 30 days, and the logs are organized in folders with using the host name of the client server. All the logs are stored in the default folder path `/var/log`
+The Rsyslog is setup in a way where the logs have a retention period of 30 days, and the logs are organized in folders by  using the host name of the client server. All the logs are stored in the default folder path `/var/log`
 
-Once the server is deployed, give your developer the ssh key to access the, and this is it.
+Once the server is deployed, give your developer the ssh key to access, and let them debug.
+
+# Pricing
+
+You pay for two things:
+
+- The EC2 Instance you select
+- For suing our AMI
+
+Check the official product page for more details.
 
 # How to deploy
 
@@ -25,9 +38,33 @@ The stack takes advantage of EC2.
 - 1x Security Group
 - 1x EBS
 
-# How to configure the Rsyslog Client
+# Manual work
 
-We have a bash script that will configure the Rsyslog on our client server automatically for you. Meaning after you run this script you should start seeing logs coming in to the `rsyslog-server`.
+### Copy the SSL cert to your client server
+
+All logs are sent over an encrypted connection thanks to an SSL certificate which is created each time you start a new instance from our AMI. The certificate is located in this folder: `/etc/ssl/ca-cert.pem`. You can use SCP to copy this cert to your client servers. To do so you need 3 steps:
+
+1. Copy the cert to your local computer
+
+```
+scp 0x4447_marketplace_server:/etc/ssl/ca-cert.pem .
+```
+
+1. Upload the cert to the client server in the `tmp` folder
+
+```
+scp ca-cert.pem 0x4447_marketplace_client:/tmp
+```
+
+1. Move the cert I the final location using `sudo` since SCP dose not support running commands using `sudo`.
+
+```
+ssh 0x4447_marketplace_client sudo mv /tmp/ca-cert.pem /etc/ssl
+```
+
+### How to configure the Rsyslog Client
+
+Once the cert is in place. We have a bash script that will configure the Rsyslog on your client servers automatically for you. Meaning after you run this script you should start seeing logs coming in to the `rsyslog-server`.
 
 ```sh
 curl -o- https://0x4447-drive-products.s3.amazonaws.com/rsyslog-server/client-setup.sh IP_OR_DNS_TO_THE_RSYSLOGSERVER | bash
@@ -36,10 +73,6 @@ curl -o- https://0x4447-drive-products.s3.amazonaws.com/rsyslog-server/client-se
 ```sh
 wget -qO- https://0x4447-drive-products.s3.amazonaws.com/rsyslog-server/client-setup.sh IP_OR_DNS_TO_THE_RSYSLOGSERVER | bash
 ```
-
-# DISCLAIMER!
-
-This stack is available to anyone at no cost, but on an as-is basis. 0x4447, LLC is not responsible for damages or costs of any kind that may occur when you use the stack. You take full responsibility when you use it.
 
 # How to work with this project
 
