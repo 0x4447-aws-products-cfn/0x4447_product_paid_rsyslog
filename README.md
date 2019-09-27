@@ -1,10 +1,10 @@
 # 🛰 Rsyslog-Server
 
-Collecting logs is useful for many things, but some time very expensive if you use manger Cloud solutions, like CloudWatch. It seams ease end convenient but once you start sending thousands of entires a day your AWS bill will inflate dramatically for such a simple thing. Of course there are use cases where the features of CloudWatch outlay the price, but in some cases you just want to see what the OS or your app is generating to debug issues. And or that you don't need anything fancy. 
+Collecting logs is useful for many things, but some time very expensive if you use manger Cloud solutions, like CloudWatch. It seams ease end convenient but once you start sending thousands of entires a day your AWS bill will inflate dramatically for such a simple thing. Of course there are use cases where the features of CloudWatch outlay the price, but in some cases you just want to see what the OS or your app is generating to debug issues. And or that you don't need anything fancy.
 
 We preconfigured an AMI with rsyslog to act as a log collection server and be the centralized place where you can get in, check the logs of all the clients, and find out the problem.
 
-The AMI price is affordable and the total cost fixed, no matter how many logs do you send. 
+The AMI price is affordable and the total cost fixed, no matter how many logs do you send.
 
 # Overview
 
@@ -56,7 +56,7 @@ scp RSYSLOG_SERVER:/etc/ssl/ca-cert.pem .
 scp ca-cert.pem CLIENT:/tmp
 ```
 
-1. Move the cert I the final location using `sudo` since SCP dose not support running commands using `sudo`.
+1. Move the cert I the final location using `sudo` since SCP dose not support running commands using `sudo`, we use `ssh` for this.
 
 ```
 ssh CLIENT sudo mv /tmp/ca-cert.pem /etc/ssl
@@ -64,14 +64,30 @@ ssh CLIENT sudo mv /tmp/ca-cert.pem /etc/ssl
 
 ### How to configure the Rsyslog Client
 
-Once the cert is in place. We have a bash script that will configure the Rsyslog on your client servers automatically for you. Meaning after you run this script you should start seeing logs coming in to the `rsyslog-server`.
+Once the cert is in place. We have a bash script that will configure the Rsyslog on your client servers automatically for you. Meaning after you run this script you should start seeing logs coming in to the `rsyslog-server`. To copy the bash script to your client server, we are going to use the same trick we did for the certificate, and use your computer as a proxy between the two instances.
 
-```sh
-curl -o- https://0x4447-drive-products.s3.amazonaws.com/rsyslog-server/client-setup.sh IP_OR_DNS_TO_THE_RSYSLOGSERVER | bash
+1. Copy the script to your local computer
+
+```
+scp RSYSLOG_SERVER:/home/ec2-user/client-setup.sh .
 ```
 
-```sh
-wget -qO- https://0x4447-drive-products.s3.amazonaws.com/rsyslog-server/client-setup.sh IP_OR_DNS_TO_THE_RSYSLOGSERVER | bash
+1. Upload the script to the client server in the `tmp` folder
+
+```
+scp client-setup.sh CLIENT:/tmp
+```
+
+1. Once the file gets uploaded, we need to make it executable.
+
+```
+ssh CLIENT chmod +x /tmp/client-setup.sh
+```
+
+1. As the last step we have to log in to your client server and run the script
+
+```
+/tmp/client-setup.sh IP_OR_DNS_TO_THE_RSYSLOGSERVER
 ```
 
 # How to work with this project
