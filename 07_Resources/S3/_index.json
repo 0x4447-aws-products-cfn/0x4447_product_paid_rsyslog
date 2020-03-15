@@ -1,0 +1,14 @@
+{
+	"S3Bucket": {
+		"Type": "AWS::S3::Bucket",
+		"Properties": {
+			"BucketName": { "Fn::Sub": "${AWS::StackName}-${AWS::Region}-rsyslog" },
+			"PublicAccessBlockConfiguration": {
+				"BlockPublicAcls": true,
+				"BlockPublicPolicy": true,
+				"IgnorePublicAcls": true,
+				"RestrictPublicBuckets": true
+			}
+		}
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"CPUAlarmUp": {
+		"Type": "AWS::CloudWatch::Alarm",
+		"Properties": {
+			"AlarmName": "rsyslog-cpu-load",
+			"AlarmDescription": "Track EC2 CPU utilization.",
+			"TreatMissingData": "notBreaching",
+			"ActionsEnabled": true,
+			"AlarmActions": [ { "Ref": "EC2AutoScalingPolicyUp" } ],
+			"ComparisonOperator": "GreaterThanOrEqualToThreshold",
+			"EvaluationPeriods": 2,
+			"Period": 120,
+			"Threshold": 90,
+			"Namespace": "AWS/EC2",
+			"MetricName": "CPUUtilization",
+			"Statistic": "Average",
+			"Dimensions": [
+				{
+					"Name": "AutoScalingGroupName",
+					"Value": { "Ref": "EC2AutoScalingGroup" }
+				}
+			]
+		}
+	}
+}

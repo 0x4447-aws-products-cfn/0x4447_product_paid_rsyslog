@@ -2,45 +2,38 @@
 	"EC2SecurityGroup": {
 		"Type": "AWS::EC2::SecurityGroup",
 		"Properties": {
-			"GroupDescription": "SSH Access.",
-			"GroupName": "Maintenance",
+			"GroupDescription": "This group allows Rsyslog to receive logs and lcoal remote acces over SSH.",
 			"VpcId": { "Ref": "VPCParam" },
 			"SecurityGroupEgress": [
 				{
 					"IpProtocol": "-1",
 					"FromPort": -1,
 					"ToPort": -1,
-					"CidrIp": "0.0.0.0/0"
+					"CidrIp": { "Ref": "CidrParam" }
 				}
 			],
 			"SecurityGroupIngress": [
 				{
 					"IpProtocol": "tcp",
-					"FromPort": 22,
-					"ToPort": 22,
-					"CidrIp": "0.0.0.0/0"
+					"FromPort": 6514,
+					"ToPort": 6514,
+					"Description": "Rsyslog",
+					"CidrIp": { "Ref": "VPCCidrBlockParam" }
 				},
 				{
 					"IpProtocol": "tcp",
-					"FromPort": 6514,
-					"ToPort": 6514,
-					"CidrIp": "0.0.0.0/0"
+					"FromPort": 22,
+					"ToPort": 22,
+					"Description": "SSH",
+					"CidrIp": { "Ref": "VPCCidrBlockParam" }
 				}
 			],
 			"Tags": [
-                {
-                    "Key" : "Name",
-                    "Value" : "rsyslog-server"
-                },
-                {
-                    "Key" : "Author",
-                    "Value" : "0x4447 LLC"
-                },
-                {
-                    "Key" : "Info",
-                    "Value" : "https://0x4447.com"
-                }
-            ]
+				{
+					"Key": "Name",
+					"Value": "0x4447_rsyslog"
+				}
+			]
 		}
 	}
 }

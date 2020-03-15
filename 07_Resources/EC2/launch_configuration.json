@@ -1,0 +1,78 @@
+{
+	"EC2LaunchConfiguration": {
+		"Type": "AWS::AutoScaling::LaunchConfiguration",
+		"Properties": {
+			"IamInstanceProfile": { "Ref": "ECSInstanceProfile" },
+			"ImageId": { "Fn::FindInMap": ["OSIDs", {"Ref": "AWS::Region"}, "64"] },
+			"InstanceType": { "Ref": "InstanceTypeParam" },
+			"SecurityGroups": [ { "Ref": "EC2SecurityGroup" } ],
+			"KeyName": { "Fn::If": ["Production", { "Ref" : "AWS::NoValue" }, { "Ref" : "KeyNameParam" } ] },
+			"UserData": { "Fn::Base64": { "Fn::Join": ["\n", [
+
+				"#!/bin/bash",
+
+				{ "Fn::Sub": "S3_BUCKET=${S3Bucket}" },
+
+				"echo S3_BUCKET=$S3_BUCKET >> /home/ec2-user/.env",
+
+				{ "Fn::Sub": "sudo /opt/aws/bin/cfn-init -v --region ${AWS::Region} --stack ${AWS::StackName} --resource EC2LaunchConfiguration" },
+
+				{ "Fn::Sub": "sudo /opt/aws/bin/cfn-signal -s true --region ${AWS::Region} --stack ${AWS::StackName} --resource EC2AutoScalingGroup" }
+
+			]]}}
+		},
+		"Metadata": {
+			"AWS::CloudFormation::Init" : {
+				"config" : {
+					"packages": {
+						"rpm": {
+							"cloudwatch-agent": "https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm"
+						}
+					},
+					"files" : {
+						"/etc/cfn/cfn-hup.conf" : {
+							"mode"  : "000644",
+							"owner" : "root",
+							"group" : "root",
+							"content" : { "Fn::Join" : ["\n", [
+								"[main]",
+								{ "Fn::Sub": "stack=${AWS::StackId}" },
+								{ "Fn::Sub": "region=${AWS::Region}" }
+							]]}
+						},
+						"/etc/cfn/hooks.d/cfn-auto-reloader.conf" : {
+							"content" : { "Fn::Join" : ["\n", [
+								"[cfn-auto-reloader-hook]",
+								"triggers=post.update",
+								"path=Resources.EC2LaunchConfiguration.Metadata.AWS::CloudFormation::Init",
+								{ "Fn::Sub": "action=/opt/aws/bin/cfn-init -v --region ${AWS::Region} --stack ${AWS::StackName} --resource EC2LaunchConfiguration" }
+							]]}
+						},
+						"/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json" : {
+							"content" : { "Fn::Join" : ["\n", [
+								"{\r\n\t\"agent\": {\r\n\t\t\"metrics_collection_interval\": 300\r\n\t},\r\n\t\"metrics\": {\r\n\t\t\"metrics_collected\": {\r\n\t\t\t\"mem\": {\r\n\t\t\t\t\"measurement\": [\"available\", \"total\", \"used\"]\r\n\t\t\t}\r\n\t\t},\r\n\t\t\"append_dimensions\": {\r\n\t\t\t\"ImageId\": \"${aws:ImageId}\",\r\n\t\t\t\"InstanceId\": \"${aws:InstanceId}\",\r\n\t\t\t\"InstanceType\": \"${aws:InstanceType}\",\r\n\t\t\t\"AutoScalingGroupName\": \"${aws:AutoScalingGroupName}\"\r\n\t\t},\r\n\t\t\"aggregation_dimensions\" : [[\"AutoScalingGroupName\"], [\"InstanceId\", \"InstanceType\"]]\r\n\t}\r\n}"
+							]]}
+						}
+					},
+					"commands": {
+						"run_cloudwatch_agent": {
+							"command": "sudo amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json -s"
+						}
+					},
+					"services": {
+						"sysvinit": {
+							"cfn-hup": {
+								"enabled": true,
+								"ensureRunning": true,
+								"files": [
+									"/etc/cfn/cfn-hup.conf",
+									"/etc/cfn/hooks.d/cfn-auto-reloader.conf"
+								]
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

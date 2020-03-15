@@ -1,0 +1,15 @@
+{
+	"SNSTopic": {
+		"Type": "AWS::SNS::Topic",
+		"Properties": {
+			"DisplayName": "0x4447-rsyslog",
+			"TopicName": "0x4447-rsyslog",
+			"Tags": [
+				{
+					"Key": "Description",
+					"Value": "Send out messages about EC2 alarms that monitor the basic health of an instance."
+				}
+			]
+		}
+	}
+}

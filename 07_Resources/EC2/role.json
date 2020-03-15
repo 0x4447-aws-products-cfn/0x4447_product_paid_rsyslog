@@ -2,7 +2,7 @@
 	"EC2Role": {
 		"Type": "AWS::IAM::Role",
 		"Properties": {
-			"RoleName": { "Fn::Sub": "rsyslog-server-${AWS::StackName}" },
+			"RoleName": "vocatales-webpage-fider-ec2",
 			"AssumeRolePolicyDocument": {
 				"Version": "2012-10-17",
 				"Statement": [
@@ -14,7 +14,12 @@
 						"Action": "sts:AssumeRole"
 					}
 				]
-			}
+			},
+			"ManagedPolicyArns": [
+				"arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy",
+				"arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+				"arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
+			]
 		}
 	}
 }
