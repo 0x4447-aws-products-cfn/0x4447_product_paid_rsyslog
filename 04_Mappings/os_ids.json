@@ -4,7 +4,7 @@
 		"ca-central-1": 	{ "64": "ami-090007db180c04f1d" },
 		"us-west-2": 		{ "64": "ami-03f8034c1a5b7a7a6" },
 		"us-east-2": 		{ "64": "ami-0ff633e9377138457" },
-		"us-east-1": 		{ "64": "ami-0575e1cdd542b2661" },
+		"us-east-1": 		{ "64": "ami-01aaeaa34ac788047" },
 		"us-west-1": 		{ "64": "ami-05e224a984feb77aa" },
 		"sa-east-1": 		{ "64": "ami-0769a06d479d12ea5" },
 		"eu-west-3": 		{ "64": "ami-0dbb320e18829876c" },

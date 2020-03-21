@@ -59,4 +59,5 @@ typings/
 
 # next.js build output
 .next
-07_Resources/.DS_Store
+CloudFormation.json
+**/*.DS_Store

@@ -2,7 +2,7 @@
 	"CPUBurstAlarm": {
 		"Type": "AWS::CloudWatch::Alarm",
 		"Properties": {
-			"AlarmName": "rsyslog-cpu-burst",
+			"AlarmName": "0x4447_rsyslog_cpu_burst",
 			"AlarmDescription": "Track CPU Burst utilization.",
 			"TreatMissingData": "notBreaching",
 			"ActionsEnabled": true,

@@ -1,18 +1,19 @@
 {
-	"CPULoadAlarm": {
+	"CPUDiskUsageAlarm": {
 		"Type": "AWS::CloudWatch::Alarm",
 		"Properties": {
-			"AlarmName": "0x4447_rsyslog_cpu_load",
-			"AlarmDescription": "Track EC2 CPU utilization.",
+			"AlarmName": "0x4447_rsyslog_disk_usage",
+			"AlarmDescription": "Track Disk utilization.",
 			"TreatMissingData": "notBreaching",
 			"ActionsEnabled": true,
 			"AlarmActions": [ { "Ref": "SNSTopic" } ],
 			"ComparisonOperator": "GreaterThanOrEqualToThreshold",
-			"EvaluationPeriods": 2,
-			"Period": 120,
-			"Threshold": 90,
-			"Namespace": "AWS/EC2",
-			"MetricName": "CPUUtilization",
+			"EvaluationPeriods": 1,
+			"Unit": "Count",
+			"Period": 300,
+			"Threshold": 70,
+			"Namespace": "CWAgent",
+			"MetricName": "disk_used_percent",
 			"Statistic": "Average",
 			"Dimensions": [
 				{

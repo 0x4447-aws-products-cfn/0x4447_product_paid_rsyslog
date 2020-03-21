@@ -2,14 +2,14 @@
 	"EC2SecurityGroup": {
 		"Type": "AWS::EC2::SecurityGroup",
 		"Properties": {
-			"GroupDescription": "This group allows Rsyslog to receive logs and lcoal remote acces over SSH.",
+			"GroupDescription": "This group allows Rsyslog to receive logs within the private network, and allow remote access over SSH.",
 			"VpcId": { "Ref": "VPCParam" },
 			"SecurityGroupEgress": [
 				{
 					"IpProtocol": "-1",
 					"FromPort": -1,
 					"ToPort": -1,
-					"CidrIp": { "Ref": "CidrParam" }
+					"CidrIp": "0.0.0.0/0"
 				}
 			],
 			"SecurityGroupIngress": [
@@ -18,14 +18,14 @@
 					"FromPort": 6514,
 					"ToPort": 6514,
 					"Description": "Rsyslog",
-					"CidrIp": { "Ref": "VPCCidrBlockParam" }
+					"CidrIp": { "Ref": "CidrParam" }
 				},
 				{
 					"IpProtocol": "tcp",
 					"FromPort": 22,
 					"ToPort": 22,
 					"Description": "SSH",
-					"CidrIp": { "Ref": "VPCCidrBlockParam" }
+					"CidrIp": { "Ref": "CidrParam" }
 				}
 			],
 			"Tags": [

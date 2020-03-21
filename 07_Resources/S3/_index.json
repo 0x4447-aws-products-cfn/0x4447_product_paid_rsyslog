@@ -2,7 +2,7 @@
 	"S3Bucket": {
 		"Type": "AWS::S3::Bucket",
 		"Properties": {
-			"BucketName": { "Fn::Sub": "${AWS::StackName}-${AWS::Region}-rsyslog" },
+			"BucketName": { "Fn::Sub": "0x4447-rsyslog-${AWS::Region}" },
 			"PublicAccessBlockConfiguration": {
 				"BlockPublicAcls": true,
 				"BlockPublicPolicy": true,

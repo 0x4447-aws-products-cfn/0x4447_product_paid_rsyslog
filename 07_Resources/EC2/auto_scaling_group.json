@@ -8,9 +8,9 @@
 			"MinSize": 1,
 			"VPCZoneIdentifier": [
 				{ "Ref": "VPCSubnetsAPrivateParam" },
-				{ "Ref": "VPCSubnetsBPrivateParam" }
+				{ "Ref": "VPCSubnetsBPrivateParam" },
+				{ "Ref": "VPCSubnetsCPrivateParam" }
 			],
-			"TargetGroupARNs": [ {"Ref": "LoadBalancerTargetGroup"} ],
 			"Tags": [
 				{
 					"Key": "Name",
