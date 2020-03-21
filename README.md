@@ -1,4 +1,4 @@
-# 🛰 Rsyslog-Server
+# Rsyslog-Server
 
 <img align="left" style="float: left; margin: 0 10px 0 0;" src="https://raw.githubusercontent.com/0x4447/0x4447_product_rsyslog/assets/product.png">
 
