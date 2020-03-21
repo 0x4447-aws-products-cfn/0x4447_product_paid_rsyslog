@@ -1,5 +1,7 @@
 # 🛰 Rsyslog-Server
 
+<img align="left" style="float: left; margin: 0 10px 0 0;" src="https://raw.githubusercontent.com/0x4447/0x4447_product_rsyslog/assets/product.png">
+
 We created this CloudFormation file to allow an easy and automated deployment process of our [custom Rsyslog AMI product](https://aws.amazon.com/marketplace/pp/B07YN9CCV4/) - available in the [AWS Marketplace](https://aws.amazon.com/marketplace/seller-profile?id=80edcebf-11fb-4c36-a3f4-49eb40b518a3). 
 
 You can find the full documentation of how to use our product here: [documentation.0x4447.com](https://documentation.0x4447.com/products/cloud/aws-marketplace/rsyslog-server.html).
