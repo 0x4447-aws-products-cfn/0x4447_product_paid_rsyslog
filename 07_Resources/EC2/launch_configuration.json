@@ -7,6 +7,7 @@
 			"InstanceType": { "Ref": "InstanceTypeParam" },
 			"SecurityGroups": [ { "Ref": "EC2SecurityGroup" } ],
 			"KeyName": { "Ref" : "KeyNameParam" },
+			"AssociatePublicIpAddress": false,
 			"UserData": { "Fn::Base64": { "Fn::Join": ["\n", [
 
 				"#!/bin/bash",

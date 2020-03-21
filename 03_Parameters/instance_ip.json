@@ -1,0 +1,6 @@
+{
+	"InstanceIPParam": {
+		"Description": "An API melongign to the same network selected above to be used by the instance evry single time, so the clients can reconnect to the server.",
+        "Type": "String"
+	}
+}

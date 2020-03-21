@@ -6,14 +6,27 @@
 				"Parameters" : [ "KeyNameParam" ]
 			},
 			{
-				"Label" : { "default" : "VPC" },
-				"Parameters" : [ "VPCParam", "VPCSubnetsParam"]
+				"Label" : { "default" : "EC2 Instance" },
+				"Parameters" : [ "InstanceTypeParam" ]
+			},
+			{
+				"Label" : { "default" : "Network" },
+				"Parameters" : [ 
+					"VPCParam", 
+					"CidrParam",
+					"VPCSubnetsPrivateParam",
+					"InstanceIPParam"
+				]
 			}
 		],
 		"ParameterLabels": {
 			"KeyNameParam": { "default" : "EC2 Private Key" },
+			"InstanceTypeParam": { "default" : "Instance Type" },
 			"VPCParam": { "default" : "VPC ID" },
-			"VPCSubnetsParam": { "default" : "VPC Public Subnet" }
+			"CidrParam": { "default" : "VPC CIDR" },
+			"VPCSubnetsPrivateParam": { "default" : "Private Subnet" },
+			"InstanceIPParam": { "default" : "Instance Local IP" }
+			
 		}
 	}
 }
