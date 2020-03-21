@@ -1,0 +1,26 @@
+{
+	"EC2InstanceRecoveryAlarm": {
+		"Type": "AWS::CloudWatch::Alarm",
+		"Properties": {
+            "AlarmName": "0x4447_rsyslog_ec2_instance_recovery",
+            "AlarmDescription": "Recover the Instance if there is a Hardware failire within AWS.",
+            "Namespace": "AWS/EC2" ,
+            "MetricName": "StatusCheckFailed_System",
+            "Statistic": "Minimum",
+            "Period": "60",
+            "EvaluationPeriods": "2",
+            "ComparisonOperator": "GreaterThanThreshold",
+            "Threshold": "0",
+            "AlarmActions": [
+                { "Ref": "SNSTopic" }, 
+                { "Fn::Join" : ["", ["arn:aws:automate:", { "Ref" : "AWS::Region" }, ":ec2:recover" ]] } 
+            ],
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": { "Ref": "EC2Instance" } 
+                } 
+            ]
+        }
+	}
+}

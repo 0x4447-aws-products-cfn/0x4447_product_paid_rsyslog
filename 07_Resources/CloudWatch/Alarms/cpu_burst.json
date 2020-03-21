@@ -17,8 +17,8 @@
 			"Statistic": "Average",
 			"Dimensions": [
 				{
-					"Name": "AutoScalingGroupName",
-					"Value": { "Ref": "EC2AutoScalingGroup" }
+					"Name": "InstanceId",
+					"Value": { "Ref": "EC2Instance" }
 				}
 			]
 		}
