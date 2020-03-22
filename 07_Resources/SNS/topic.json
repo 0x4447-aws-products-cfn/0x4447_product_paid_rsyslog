@@ -2,8 +2,8 @@
 	"SNSTopic": {
 		"Type": "AWS::SNS::Topic",
 		"Properties": {
-			"DisplayName": "0x4447_rsyslog",
-			"TopicName": "0x4447_rsyslog",
+			"DisplayName": { "Fn::Sub": "0x4447_rsyslog_${UniqueIdentifierParam}" },
+			"TopicName": { "Fn::Sub": "0x4447_rsyslog_${UniqueIdentifierParam}" },
 			"Tags": [
 				{
 					"Key": "Description",

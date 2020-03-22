@@ -2,7 +2,7 @@
 	"CPULoadAlarm": {
 		"Type": "AWS::CloudWatch::Alarm",
 		"Properties": {
-			"AlarmName": "0x4447_rsyslog_cpu_load",
+			"AlarmName": { "Fn::Sub": "0x4447_rsyslog_${UniqueIdentifierParam}_cpu_load" },
 			"AlarmDescription": "Track EC2 CPU utilization.",
 			"TreatMissingData": "notBreaching",
 			"ActionsEnabled": true,

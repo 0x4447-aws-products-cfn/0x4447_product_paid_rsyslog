@@ -4,7 +4,7 @@
 		"Properties": {
 			"Path": "/",
 			"Roles": [ { "Ref": "EC2Role" } ],
-			"InstanceProfileName": { "Fn::Sub": "0x4447_rsyslog_instance_profile" }
+			"InstanceProfileName": { "Fn::Sub": "0x4447_rsyslog_instance_profile_${UniqueIdentifierParam}" }
 		}
 	}
 }

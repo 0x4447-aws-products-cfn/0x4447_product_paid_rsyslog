@@ -2,6 +2,7 @@
 	"EC2SecurityGroup": {
 		"Type": "AWS::EC2::SecurityGroup",
 		"Properties": {
+			"GroupName": { "Fn::Sub": "0x4447_rsyslog_${UniqueIdentifierParam}" },
 			"GroupDescription": "This group allows Rsyslog to receive logs within the private network, and allow remote access over SSH.",
 			"VpcId": { "Ref": "VPCParam" },
 			"SecurityGroupEgress": [

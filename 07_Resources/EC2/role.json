@@ -2,7 +2,7 @@
 	"EC2Role": {
 		"Type": "AWS::IAM::Role",
 		"Properties": {
-			"RoleName": "0x4447_rsyslog_EC2",
+			"RoleName": { "Fn::Sub": "0x4447_rsyslog_EC2_${UniqueIdentifierParam}" },
 			"AssumeRolePolicyDocument": {
 				"Version": "2012-10-17",
 				"Statement": [

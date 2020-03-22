@@ -2,7 +2,7 @@
 	"CPUDiskUsageAlarm": {
 		"Type": "AWS::CloudWatch::Alarm",
 		"Properties": {
-			"AlarmName": "0x4447_rsyslog_disk_usage",
+			"AlarmName": { "Fn::Sub": "0x4447_rsyslog_${UniqueIdentifierParam}_disk_usage" },
 			"AlarmDescription": "Track Disk utilization.",
 			"TreatMissingData": "notBreaching",
 			"ActionsEnabled": true,

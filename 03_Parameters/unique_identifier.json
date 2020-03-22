@@ -1,0 +1,6 @@
+{
+	"UniqueIdentifierParam": {
+		"Description": "Provide a unique name of this deployment. We are going to append it at the end of some key service names to allow deploying this stack multiple times in the same AWS account.",
+        "Type": "String"
+	}
+}
