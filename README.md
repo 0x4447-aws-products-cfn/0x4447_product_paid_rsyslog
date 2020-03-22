@@ -8,9 +8,9 @@ You can find the full documentation of how to use our product here: [documentati
 
 # Feature of the stack
 
-Once deployed the stack will create a EC2 instance automatically for you thanks to the LaunchConfiguration file and the AutoScaling service which is configure to always have a minimum of 1. Meaning the Rsyslog server will always be available. If the instance get terminated the autoscaling will recreated it with the same configuration. 
+Once deployed the stack will create a EC2 instance automatically for you, with a special alarm to automatically recover if there was a AWS Hardware failure. Meaning the Rsyslog server will always be available. Also by default the Instance have termination protection ON.
 
-**IMPORTANT**: all the unique server configuration is stored in a S3 bucket. Thanks to this if our software detects that the data is in the bucket, it will use what is in the bucket - this  way your clients will be able to reconnect to the instance automatically with minimal downtime. 
+**IMPORTANT**: all the unique server configuration is stored in a S3 bucket. Thanks to this, if our software detects that the data is in the bucket, it will use what is in the bucket - this  way your clients will be able to reconnect to the instance automatically with minimal downtime. 
 
 # How to deploy
 
