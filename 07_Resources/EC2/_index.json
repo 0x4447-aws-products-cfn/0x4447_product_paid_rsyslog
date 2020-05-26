@@ -20,7 +20,7 @@
 
 				"#!/bin/bash",
 
-				{ "Fn::Sub": "S3_BUCKET=${S3Bucket}" },
+				{ "Fn::Sub": "S3_BUCKET=${S3BucketParam}" },
 
 				"echo S3_BUCKET=$S3_BUCKET >> /home/ec2-user/.env",
 
