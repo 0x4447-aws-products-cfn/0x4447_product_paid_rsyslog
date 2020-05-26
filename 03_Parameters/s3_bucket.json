@@ -1,0 +1,6 @@
+{
+	"S3BucketParam": {
+		"Description": "The S3 bucket where the cert is will or is sotred.",
+        "Type": "String"
+	}
+}

@@ -21,6 +21,10 @@
 					"VPCSubnetsPrivateParam",
 					"InstanceIPParam"
 				]
+			},
+			{
+				"Label" : { "default" : "Resiliance" },
+				"Parameters" : [ "S3BucketParam" ]
 			}
 		],
 		"ParameterLabels": {
