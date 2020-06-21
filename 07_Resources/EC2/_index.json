@@ -6,7 +6,7 @@
 			"ImageId": { "Fn::FindInMap": ["OSIDs", {"Ref": "AWS::Region"}, "64"] },
 			"InstanceType": { "Ref": "InstanceTypeParam" },
 			"KeyName": { "Ref" : "KeyNameParam" },			
-			"DisableApiTermination": true,
+			"DisableApiTermination": { "Fn::If": [ "isCustomAMI", false, true ] },
 			"NetworkInterfaces": [{
 				"AssociatePublicIpAddress" : true,
 				"DeviceIndex": "0",
