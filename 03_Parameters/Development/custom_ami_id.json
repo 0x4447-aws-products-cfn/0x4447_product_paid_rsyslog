@@ -1,0 +1,6 @@
+{
+	"CustomAMIIdParam": {
+		"Description": "DO NOT USE: Intended to be used only for the 0x4447 team.",
+        "Type": "String"
+	}
+}
