@@ -1,0 +1,6 @@
+{
+	"isCustomAMI" : {
+		"Fn::Not" : [{ "Fn::Equals" : [ { "Ref" : "CustomAMIIdParam"}, "" ] }]
+	 }
+}
+

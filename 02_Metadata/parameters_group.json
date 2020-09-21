@@ -25,7 +25,13 @@
 			{
 				"Label" : { "default" : "Resiliance" },
 				"Parameters" : [ "S3BucketParam" ]
-			}
+			},
+                        {
+                                "Label" : { "default" : "Reserved for internal debugging" },
+                                "Parameters" : [
+                                        "CustomAMIIdParam"
+                                 ]
+                        }
 		],
 		"ParameterLabels": {
 			"UniqueIdentifierParam": { "default" : "Unique Identifier" },			
@@ -34,7 +40,8 @@
 			"VPCParam": { "default" : "VPC ID" },
 			"CidrParam": { "default" : "VPC CIDR" },
 			"VPCSubnetsPrivateParam": { "default" : "Private Subnet" },
-			"InstanceIPParam": { "default" : "Instance Local IP" }
+			"InstanceIPParam": { "default" : "Instance Local IP" },
+			"CustomAMIIdParam": { "default" : "AMI ID" }
 		}
 	}
 }
