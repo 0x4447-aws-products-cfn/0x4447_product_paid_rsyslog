@@ -2,36 +2,64 @@
 	"AWS::CloudFormation::Interface" : {
 		"ParameterGroups": [
 			{
-				"Label" : { "default" : "Deployment" },
-				"Parameters" : [ "UniqueIdentifierParam" ]
+				"Label": {
+					"default": "Deployment"
+				},
+				"Parameters": [
+					"UniqueIdentifierParam"
+				]
 			},
 			{
-				"Label" : { "default" : "Access" },
-				"Parameters" : [ "KeyNameParam" ]
+				"Label": {
+					"default": "App"
+				},
+				"Parameters": [
+					"LogTTLParam"
+				]
 			},
 			{
-				"Label" : { "default" : "EC2 Instance" },
-				"Parameters" : [ "InstanceTypeParam" ]
+				"Label": {
+					"default": "Access"
+				},
+				"Parameters": [
+					"KeyNameParam"
+				]
 			},
 			{
-				"Label" : { "default" : "Network" },
-				"Parameters" : [ 
-					"VPCParam", 
+				"Label": {
+					"default": "EC2 Instance"
+				},
+				"Parameters": [
+					"InstanceTypeParam"
+				]
+			},
+			{
+				"Label": {
+					"default": "Network"
+				},
+				"Parameters": [
+					"VPCParam",
 					"CidrParam",
 					"VPCSubnetsPrivateParam",
 					"InstanceIPParam"
 				]
 			},
 			{
-				"Label" : { "default" : "Resiliance" },
-				"Parameters" : [ "S3BucketParam" ]
+				"Label": {
+					"default": "Resiliance"
+				},
+				"Parameters": [
+					"S3BucketParam"
+				]
 			},
-                        {
-                                "Label" : { "default" : "Reserved for internal debugging" },
-                                "Parameters" : [
-                                        "CustomAMIIdParam"
-                                 ]
-                        }
+			{
+				"Label": {
+					"default": "Reserved for internal debugging"
+				},
+				"Parameters": [
+					"CustomAMIIdParam"
+				]
+			}
 		],
 		"ParameterLabels": {
 			"UniqueIdentifierParam": { "default" : "Unique Identifier" },			

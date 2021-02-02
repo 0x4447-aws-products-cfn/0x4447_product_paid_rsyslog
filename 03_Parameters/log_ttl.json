@@ -1,0 +1,6 @@
+{
+	"LogTTLParam": {
+		"Description": "Provide after how many days do you want the logs to be deleted. From: 0 to 10000",
+        "Type": "String"
+	}
+}

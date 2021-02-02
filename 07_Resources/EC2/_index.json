@@ -20,9 +20,11 @@
 
 				"#!/bin/bash",
 
-				{ "Fn::Sub": "S3_BUCKET=${S3BucketParam}" },
+				{ "Fn::Sub": "S3_BUCKET=${S3}" },
+				{ "Fn::Sub": "LOG_TTL=${LogTTLParam}" },
 
 				"echo S3_BUCKET=$S3_BUCKET >> /home/ec2-user/.env",
+				"echo LOG_TTL=$LOG_TTL >> /home/ec2-user/.env",
 
 				{ "Fn::Sub": "sudo /opt/aws/bin/cfn-init -v --region ${AWS::Region} --stack ${AWS::StackName} --resource EC2Instance" },
 
