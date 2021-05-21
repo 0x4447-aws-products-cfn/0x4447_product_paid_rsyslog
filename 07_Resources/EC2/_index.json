@@ -6,7 +6,7 @@
 			"ImageId": { "Fn::If": [ "isCustomAMI", { "Ref": "CustomAMIIdParam" }, { "Fn::FindInMap": ["OSIDs", {"Ref": "AWS::Region"}, "64"] } ] },
 			"InstanceType": { "Ref": "InstanceTypeParam" },
 			"KeyName": { "Ref" : "KeyNameParam" },			
-			"DisableApiTermination": { "Fn::If": [ "isCustomAMI", false, true ] },
+			"DisableApiTermination": true,
 			"NetworkInterfaces": [{
 				"AssociatePublicIpAddress" : true,
 				"DeviceIndex": "0",
