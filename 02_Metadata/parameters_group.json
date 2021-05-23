@@ -2,74 +2,52 @@
 	"AWS::CloudFormation::Interface" : {
 		"ParameterGroups": [
 			{
-				"Label": {
-					"default": "Deployment"
-				},
-				"Parameters": [
-					"UniqueIdentifierParam"
-				]
+				"Label" : { "default" : "Deployment" },
+				"Parameters" : [ "UniqueIdentifierParam" ]
 			},
 			{
-				"Label": {
-					"default": "App"
-				},
-				"Parameters": [
-					"LogTTLParam"
-				]
-			},
-			{
-				"Label": {
-					"default": "Access"
-				},
-				"Parameters": [
+				"Label" : { "default" : "EC2 Instance" },
+				"Parameters" : [
+					"InstanceTypeParam",
 					"KeyNameParam"
 				]
 			},
 			{
-				"Label": {
-					"default": "EC2 Instance"
-				},
-				"Parameters": [
-					"InstanceTypeParam"
-				]
-			},
-			{
-				"Label": {
-					"default": "Network"
-				},
+				"Label" : { "default" : "Network" },
 				"Parameters": [
 					"VPCParam",
-					"CidrParam",
 					"VPCSubnetsPrivateParam",
-					"InstanceIPParam"
+					"CidrParam"
 				]
 			},
 			{
-				"Label": {
-					"default": "Resiliance"
-				},
-				"Parameters": [
+				"Label" : { "default" : "Monitoring" },
+				"Parameters" : [ "EmailParam" ]
+			},
+			{
+				"Label" : { "default" : "Product Configuration" },
+				"Parameters" : [
+					"InstanceIPParam",
+					"LogTTLParam",
 					"S3BucketParam"
-				]
-			},
-			{
-				"Label": {
-					"default": "Reserved for internal debugging"
-				},
-				"Parameters": [
-					"CustomAMIIdParam"
 				]
 			}
 		],
 		"ParameterLabels": {
-			"UniqueIdentifierParam": { "default" : "Unique Identifier" },			
-			"KeyNameParam": { "default" : "EC2 Private Key" },
+			"UniqueIdentifierParam": { "default" : "Unique Identifier" },
+
 			"InstanceTypeParam": { "default" : "Instance Type" },
+			"KeyNameParam": { "default" : "EC2 Private Key" },
+
 			"VPCParam": { "default" : "VPC ID" },
-			"CidrParam": { "default" : "VPC CIDR" },
 			"VPCSubnetsPrivateParam": { "default" : "Private Subnet" },
+			"CidrParam": { "default" : "VPC CIDR" },
+
+			"EmailParam": { "default" : "Email" },
+
 			"InstanceIPParam": { "default" : "Instance Local IP" },
-			"CustomAMIIdParam": { "default" : "AMI ID" }
+			"LogTTLParam": { "default" : "Log Rotation TTL" },
+			"S3BucketParam": { "default" : "S3 Bucket" }
 		}
 	}
 }

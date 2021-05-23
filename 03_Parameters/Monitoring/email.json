@@ -1,0 +1,6 @@
+{
+	"EmailParam": {
+		"Description": "Wrtie the email the CloudWatch Alarms should use to send allerts. WARNING: you have to confirm your subscription to receive the emails.",
+		"Type": "String"
+	}
+}
