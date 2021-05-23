@@ -1,6 +1,6 @@
 {
 	"S3BucketParam": {
-		"Description": "The S3 bucket where the cert is will or is sotred.",
+		"Description": "Provide the S3 Bucket name where the custom bash script will be copied to (this bucket will be created for you).",
         "Type": "String"
 	}
 }

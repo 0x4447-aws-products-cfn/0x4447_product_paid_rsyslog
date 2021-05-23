@@ -1,6 +1,6 @@
 {
 	"LogTTLParam": {
-		"Description": "Provide after how many days do you want the logs to be deleted. From: 0 to 10000",
+		"Description": "Set the amount of days after which the logs should be deleted (range: 0 to 1000).",
         "Type": "String"
 	}
 }

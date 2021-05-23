@@ -1,6 +1,6 @@
 {
 	"InstanceIPParam": {
-		"Description": "An API melongign to the same network selected above to be used by the instance evry single time, so the clients can reconnect to the server.",
+		"Description": "A local IP (of to the same subnet selected above) to be used by the instance. The IP will stay the same even after a reboot or stop/start action.",
         "Type": "String"
 	}
 }
