@@ -1,6 +1,6 @@
 {
-	"EmailParam": {
-		"Description": "Wrtie the email the CloudWatch Alarms should use to send allerts. WARNING: you have to confirm your subscription to receive the emails.",
-		"Type": "String"
-	}
+    "EmailParam": {
+        "Description": "Provide an email where to receive CloudWatch Alarms notification through SNS. WARNING: AWS will send a confirmation email, you have to accept, otherwise AWS won't be able to send you alarm notifications.",
+        "Type": "String"
+    }
 }

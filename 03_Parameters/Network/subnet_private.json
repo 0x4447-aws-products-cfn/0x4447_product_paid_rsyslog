@@ -1,6 +1,6 @@
 {
-	"VPCSubnetsPrivateParam": {
-		"Description": "The ID of a Private subnet from the selected VPC.",
-		"Type": "AWS::EC2::Subnet::Id"
-	}
+    "VPCSubnetsPrivateParam": {
+        "Description": "The ID of the subnet where the instance should be deployed in. WARNING: not all subnets can accommodate all EC2 instances types.",
+        "Type": "AWS::EC2::Subnet::Id"
+    }
 }

@@ -1,6 +1,6 @@
 {
-	"KeyNameParam": {
-		"Description": "The name of the private key to be used to access the server.",
-		"Type": "AWS::EC2::KeyPair::KeyName"
-	}
+    "KeyNameParam": {
+        "Description": "The private key to be used to access the server over SSH for remote management.",
+        "Type": "AWS::EC2::KeyPair::KeyName"
+    }
 }
