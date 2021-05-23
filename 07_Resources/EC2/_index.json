@@ -3,9 +3,9 @@
         "Type" : "AWS::EC2::Instance",
         "Properties" : {
             "IamInstanceProfile": { "Ref": "ECSInstanceProfile" },
-			"ImageId": { "Fn::If": [ "isCustomAMI", { "Ref": "CustomAMIIdParam" }, { "Fn::FindInMap": ["OSIDs", {"Ref": "AWS::Region"}, "64"] } ] },
+			"ImageId": { "Fn::FindInMap": ["OSIDs", {"Ref": "AWS::Region"}, "64"] },
 			"InstanceType": { "Ref": "InstanceTypeParam" },
-			"KeyName": { "Ref" : "KeyNameParam" },			
+			"KeyName": { "Ref" : "KeyNameParam" },
 			"DisableApiTermination": true,
 			"NetworkInterfaces": [{
 				"AssociatePublicIpAddress" : true,
