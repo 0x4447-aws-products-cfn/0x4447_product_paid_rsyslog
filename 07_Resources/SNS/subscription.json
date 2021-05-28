@@ -1,0 +1,10 @@
+{
+    "SNSSubscription" : {
+        "Type" : "AWS::SNS::Subscription",
+        "Properties" : {
+            "Endpoint" : { "Ref" : "EmailParam" },
+            "Protocol" : "email",
+            "TopicArn" : { "Ref" : "SNSTopic" }
+        }
+    }
+}
