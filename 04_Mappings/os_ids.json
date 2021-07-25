@@ -1,16 +1,10 @@
 {
     "OSIDs": {
-        "us-east-1": {
-            "64": "ami-0287789e1d85769e0"
+        "af-south-1": {
+            "64": "ami-0fdc3b7bc9a925092"
         },
-        "us-east-2": {
-            "64": "ami-0e69ab1bfb33531d0"
-        },
-        "us-west-1": {
-            "64": "ami-0fda8d4285a3b471b"
-        },
-        "us-west-2": {
-            "64": "ami-0a2ccae0fc4bf8b9b"
+        "ap-east-1": {
+            "64": "ami-0706615d3159aabb8"
         },
         "ap-northeast-1": {
             "64": "ami-088872e4aec8bcf89"
@@ -39,6 +33,9 @@
         "eu-north-1": {
             "64": "ami-059cfa632ead615c2"
         },
+        "eu-south-1": {
+            "64": "ami-06b3c9f0ef02509e1"
+        },
         "eu-west-1": {
             "64": "ami-020140b05d5436616"
         },
@@ -48,8 +45,23 @@
         "eu-west-3": {
             "64": "ami-0cf3a112e67709b85"
         },
+        "me-south-1": {
+            "64": "ami-0e51d79daf6af5f51"
+        },
         "sa-east-1": {
             "64": "ami-021d9cee67ffa9144"
+        },
+        "us-east-1": {
+            "64": "ami-0287789e1d85769e0"
+        },
+        "us-east-2": {
+            "64": "ami-0e69ab1bfb33531d0"
+        },
+        "us-west-1": {
+            "64": "ami-0fda8d4285a3b471b"
+        },
+        "us-west-2": {
+            "64": "ami-0a2ccae0fc4bf8b9b"
         }
     }
 }
