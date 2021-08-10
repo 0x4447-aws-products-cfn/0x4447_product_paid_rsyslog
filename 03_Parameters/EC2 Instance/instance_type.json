@@ -2,7 +2,7 @@
     "InstanceTypeParam" : {
         "Type" : "String",
         "Default" : "t3a.nano",
-        "Description" : "Select the instance type that fits your needs. By default we have set the cheapest option for costs savings.",
+        "Description" : "Select the instance type that fits your needs. By default we have set the cheapest option for cost savings.",
         "AllowedValues" : [
             "t2.nano",
             "t2.micro",

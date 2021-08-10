@@ -1,6 +1,6 @@
 {
     "UniqueIdentifierParam": {
-        "Description": "Provide a unique name for this deployment. We are going to append it to all AWS resources that we create for easy identification.",
+        "Description": "Provide a unique name for this deployment. We will use it to create unique names for each resource to allow you multiple deployments of the same product.",
         "Type": "String"
     }
 }
