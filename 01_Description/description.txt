@@ -1,1 +1,1 @@
-Rsyslog server - Unlimited Connections - product of 0x4447
+Rsyslog server - Unlimited Connections ::: a product from the AWS Marketplace by 0x4447, documentation at: https://documentation.0x4447.com
