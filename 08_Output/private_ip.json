@@ -1,0 +1,6 @@
+{
+    "PrivateIpOutput": {
+        "Value": { "Fn::GetAtt": [ "EC2Instance", "PrivateIp" ] },
+        "Description": "The private IP of the instance."
+    }
+}
