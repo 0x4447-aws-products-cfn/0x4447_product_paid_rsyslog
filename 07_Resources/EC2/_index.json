@@ -3,7 +3,7 @@
         "Type" : "AWS::EC2::Instance",
         "Properties" : {
             "IamInstanceProfile": { "Ref": "ECSInstanceProfile" },
-			"ImageId": "resolve:ssm:/aws/service/marketplace/prod-45546gvzq77qi/latest",
+			"ImageId": { "Fn::FindInMap": ["OSIDs", {"Ref": "AWS::Region"}, "64"] },
 			"InstanceType": { "Ref": "InstanceTypeParam" },
 			"KeyName": { "Ref" : "KeyNameParam" },
 			"DisableApiTermination": false,
