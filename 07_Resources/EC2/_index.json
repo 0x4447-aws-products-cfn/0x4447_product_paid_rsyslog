@@ -53,11 +53,6 @@
         "Metadata": {
 			"AWS::CloudFormation::Init" : {
 				"config" : {
-					"packages": {
-						"rpm": {
-							"cloudwatch-agent": "https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm"
-						}
-					},
 					"files" : {
 						"/etc/cfn/cfn-hup.conf" : {
 							"mode"  : "000644",
@@ -78,14 +73,22 @@
 							]]}
 						},
 						"/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json" : {
-							"content" : { "Fn::Join" : ["\n", [
-								"{\r\n\t\"agent\": {\r\n\t\t\"metrics_collection_interval\": 300\r\n\t},\r\n\t\"metrics\": {\r\n\t\t\"metrics_collected\": {\r\n\t\t\t\"mem\": {\r\n\t\t\t\t\"measurement\": [\"available\", \"total\", \"used\"]\r\n\t\t\t},\r\n\t\t\t\"disk\": {\r\n                \"resources\": [\"\/\"],\r\n\t\t\t\t\"measurement\": [\"total\", \"used_percent\"]\r\n\t\t\t}\r\n\t\t},\r\n\t\t\"append_dimensions\": {\r\n\t\t\t\"ImageId\": \"${aws:ImageId}\",\r\n\t\t\t\"InstanceId\": \"${aws:InstanceId}\",\r\n\t\t\t\"InstanceType\": \"${aws:InstanceType}\",\r\n\t\t\t\"AutoScalingGroupName\": \"${aws:AutoScalingGroupName}\"\r\n\t\t},\r\n\t\t\"aggregation_dimensions\" : [[\"AutoScalingGroupName\"], [\"InstanceId\", \"InstanceType\"]]\r\n\t}\r\n}"
-							]]}
+                            "mode": "000644",
+                            "owner": "root",
+                            "group": "root",
+							"content" : {
+                                "Fn::Sub": [
+                                    "{\r\n    \"agent\": {\r\n        \"metrics_collection_interval\": 300\r\n    },\r\n    \"metrics\": {\r\n        \"namespace\": \"sftp\",\r\n        \"metrics_collected\": {\r\n            \"mem\": {\r\n                \"measurement\": [\"total\", \"available\", \"used\"]\r\n            },\r\n            \"disk\": {\r\n                \"resources\": [\"\/\"],\r\n                \"measurement\": [\"total\", \"free\", \"used\"]\r\n            },\r\n            \"processes\": {\r\n                \"measurement\": [\"total\", \"running\", \"sleeping\", \"stopped\", \"zombies\"]\r\n            }\r\n        }\r\n    },\r\n    \"logs\": {\r\n        \"log_stream_name\": \"default\",\r\n        \"force_flush_interval\": 15,\r\n        \"logs_collected\": {\r\n            \"files\": {\r\n                \"collect_list\": [\r\n                    {\r\n                        \"file_path\": \"\/var\/log\/messages\",\r\n                        \"log_group_name\": \"\/0x4447\/instance\/rsyslog\/logs\/${UniqueIdentifierParam}\",\r\n                        \"log_stream_name\": \"\/var\/log\/messages\",\r\n                        \"timezone\": \"UTC\"\r\n                    },\r\n                    {\r\n                        \"file_path\": \"\/var\/log\/secure\",\r\n                        \"log_group_name\": \"\/0x4447\/instance\/rsyslog\/logs\/${UniqueIdentifierParam}\",\r\n                        \"log_stream_name\": \"\/var\/log\/secure\",\r\n                        \"timezone\": \"UTC\"\r\n                    }\r\n                ]\r\n            }\r\n        }\r\n    }\r\n}",
+                                    {
+                                        "UniqueIdentifierParam": { "Ref": "UniqueIdentifierParam" }
+                                    }
+                                ]
+                            }
 						}
 					},
 					"commands": {
 						"run_cloudwatch_agent": {
-							"command": "sudo amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json -s"
+							"command": "sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json -s"
 						}
 					},
 					"services": {
