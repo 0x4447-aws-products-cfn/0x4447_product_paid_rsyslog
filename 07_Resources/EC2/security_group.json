@@ -16,16 +16,23 @@
 			"SecurityGroupIngress": [
 				{
 					"IpProtocol": "tcp",
-					"FromPort": 6514,
-					"ToPort": 6514,
-					"Description": "Rsyslog",
+					"FromPort": 22,
+					"ToPort": 22,
+					"Description": "SSH",
+					"CidrIp": { "Ref": "CidrParam" }
+				},
+                {
+					"IpProtocol": "tcp",
+					"FromPort": 2049,
+					"ToPort": 2049,
+					"Description": "EFS",
 					"CidrIp": { "Ref": "CidrParam" }
 				},
 				{
 					"IpProtocol": "tcp",
-					"FromPort": 22,
-					"ToPort": 22,
-					"Description": "SSH",
+					"FromPort": 6514,
+					"ToPort": 6514,
+					"Description": "Rsyslog",
 					"CidrIp": { "Ref": "CidrParam" }
 				}
 			],

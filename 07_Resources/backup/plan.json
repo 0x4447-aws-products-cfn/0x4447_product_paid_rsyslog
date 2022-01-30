@@ -1,0 +1,30 @@
+{
+    "BackupPlan": {
+        "Type": "AWS::Backup::BackupPlan",
+        "Properties": {
+            "BackupPlan": {
+                "BackupPlanName": { "Fn::Sub": "0x4447_rsyslog_EC2_${UniqueIdentifierParam}_${AWS::Region}" },
+                "BackupPlanRule": [
+                    {
+                        "RuleName": "daily_backups_with_7_days_retention",
+                        "TargetBackupVault": { "Ref": "BackupVault" },
+                        "ScheduleExpression": "cron(0 5 ? * * *)",
+                        "Lifecycle": {
+                            "DeleteAfterDays" : 7
+                        },
+                        "RecoveryPointTags": {
+                            "Name": { "Fn::Sub": "0x4447_rsyslog_EC2_${UniqueIdentifierParam}_${AWS::Region}" },
+                            "Source": "0x4447 LLC",
+                            "Info": "https://products.0x4447.com/"
+                        }
+                    }
+                ]
+            },
+            "BackupPlanTags": {
+                "Name": { "Fn::Sub": "0x4447_rsyslog_EC2_${UniqueIdentifierParam}_${AWS::Region}" },
+                "Source": "0x4447 LLC",
+                "Info": "https://products.0x4447.com/"
+            }
+        }
+    }
+}

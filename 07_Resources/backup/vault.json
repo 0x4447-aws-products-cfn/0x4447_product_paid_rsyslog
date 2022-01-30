@@ -1,0 +1,15 @@
+{
+    "BackupVault": {
+        "Type": "AWS::Backup::BackupVault",
+        "Properties": {
+            "BackupVaultName": {
+                "Ref": "UniqueIdentifierParam"
+            },
+            "BackupVaultTags": {
+                "Name": { "Ref": "UniqueIdentifierParam" },
+                "Source": "0x4447 LLC",
+                "Info": "https://products.0x4447.com/"
+            }
+        }
+    }
+}

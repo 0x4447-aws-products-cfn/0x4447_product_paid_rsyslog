@@ -1,0 +1,25 @@
+{
+	"EFS": {
+		"Type": "AWS::EFS::FileSystem",
+		"Condition": "NewEFS",
+		"Properties": {
+			"Encrypted": true,
+            "PerformanceMode": "generalPurpose",
+            "ThroughputMode": "bursting",
+			"FileSystemTags": [
+				{
+					"Key" : "Name",
+					"Value" : { "Ref": "UniqueIdentifierParam"}
+				},
+				{
+					"Key" : "Source",
+					"Value" : "0x4447 LLC"
+				},
+				{
+					"Key" : "Info",
+					"Value" : "https://products.0x4447.com/"
+				}
+			]
+		}
+	}
+}

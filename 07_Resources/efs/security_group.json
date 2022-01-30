@@ -1,0 +1,34 @@
+{
+	"EFSSecurityGroup": {
+		"Type": "AWS::EC2::SecurityGroup",
+		"Condition": "NewEFS",
+		"Properties": {
+			"GroupName": { "Fn::Sub": "0x4447_rsyslog_EC2_${UniqueIdentifierParam}_${AWS::Region}" },
+			"GroupDescription": "This group allows the EFS to be mounted in the selected subnet.",
+			"VpcId": { "Ref": "VPCParam" },
+			"SecurityGroupEgress": [
+				{
+					"IpProtocol": "-1",
+					"FromPort": -1,
+					"ToPort": -1,
+					"CidrIp": { "Ref": "CidrParam" }
+				}
+			],
+			"SecurityGroupIngress": [
+				{
+					"IpProtocol": "tcp",
+					"FromPort": 2049,
+					"ToPort": 2049,
+					"Description": "EFS",
+					"CidrIp": { "Ref": "CidrParam" }
+				}
+			],
+			"Tags": [
+				{
+					"Key": "Name",
+					"Value": { "Fn::Sub": "0x4447_rsyslog_EC2_${UniqueIdentifierParam}_${AWS::Region}" }
+				}
+			]
+		}
+	}
+}

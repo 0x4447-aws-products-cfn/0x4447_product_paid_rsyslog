@@ -21,10 +21,13 @@
 				"#!/bin/bash",
 
 				{ "Fn::Sub": "S3_BUCKET=${S3Bucket}" },
-				{ "Fn::Sub": "LOG_TTL=${LogTTLParam}" },
-
 				"echo S3_BUCKET=$S3_BUCKET >> /home/ec2-user/.env",
+
+                { "Fn::Sub": "LOG_TTL=${LogTTLParam}" },
 				"echo LOG_TTL=$LOG_TTL >> /home/ec2-user/.env",
+
+                { "Fn::If": [ "isCustomEFS", { "Fn::Sub": "EFS_ID=${EFSIDParam}" }, { "Fn::Sub": "EFS_ID=${EFS}" } ] },
+                "echo EFS_ID=$EFS_ID >> /home/ec2-user/.env",
 
 				{ "Fn::Sub": "sudo /opt/aws/bin/cfn-init -v --region ${AWS::Region} --stack ${AWS::StackName} --resource EC2Instance" },
 
@@ -46,7 +49,7 @@
                 },
                 {
                     "Key" : "Info",
-                    "Value" : "https://0x4447.com"
+                    "Value" : "https://products.0x4447.com/"
                 }
             ]
         },

@@ -1,0 +1,5 @@
+{
+	"NewEFS" : {
+        "Fn::Equals" : [ { "Ref" : "EFSIDParam"}, "" ]
+    }
+}

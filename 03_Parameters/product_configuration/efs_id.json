@@ -1,0 +1,6 @@
+{
+	"EFSIDParam": {
+		"Description": "OPTIONAL: Provide an existing EFS ID to be used with existing data. Or keep blank to have a fresh EFS drive created.",
+        "Type": "String"
+	}
+}

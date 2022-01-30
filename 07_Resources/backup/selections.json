@@ -1,0 +1,17 @@
+{
+    "BackupSelection": {
+        "Type" : "AWS::Backup::BackupSelection",
+        "Properties" : {
+            "BackupPlanId" : { "Ref": "BackupPlan" },
+            "BackupSelection" : {
+                "SelectionName" : { "Ref": "UniqueIdentifierParam" },
+                "IamRoleArn" : { "Fn::GetAtt" : ["BackupRole", "Arn"] },
+                "ListOfTags" : [{
+                    "ConditionType" : "STRINGEQUALS",
+                    "ConditionKey" : "Name",
+                    "ConditionValue" : { "Ref": "UniqueIdentifierParam" }
+                }]
+              }
+          }
+      }
+}
