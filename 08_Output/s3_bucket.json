@@ -1,0 +1,6 @@
+{
+    "S3BucketOutput": {
+        "Value": { "Ref": "S3BucketParam" },
+        "Description": "The bucket name where the bash script is located."
+    }
+}
