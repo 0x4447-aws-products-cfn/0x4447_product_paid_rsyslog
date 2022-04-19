@@ -1,0 +1,6 @@
+{
+	"isCustomStream" : {
+		"Fn::Not" : [ { "Fn::Equals" : [ { "Ref" : "StreamNameParam"}, "" ] } ]
+	 }
+}
+

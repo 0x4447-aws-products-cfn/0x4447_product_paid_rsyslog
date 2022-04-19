@@ -1,0 +1,6 @@
+{
+	"StreamNameParam": {
+		"Description": "OPTIONAL: Provide a Kinesis Firehose Stream name to have the incoming logs forwarded to the stream.",
+        "Type": "String"
+	}
+}

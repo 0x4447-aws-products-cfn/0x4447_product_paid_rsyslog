@@ -29,6 +29,9 @@
                 { "Fn::If": [ "isCustomEFS", { "Fn::Sub": "EFS_ID=${EFSIDParam}" }, { "Fn::Sub": "EFS_ID=${EFS}" } ] },
                 "echo EFS_ID=$EFS_ID >> /home/ec2-user/.env",
 
+				{ "Fn::If": [ "isCustomStream", { "Fn::Sub": "FIREHOSE_ID=${StreamNameParam}" }, "" ] },
+				"echo FIREHOSE_ID=$FIREHOSE_ID >> /home/ec2-user/.env",
+
 				{ "Fn::Sub": "sudo /opt/aws/bin/cfn-init -v --region ${AWS::Region} --stack ${AWS::StackName} --resource EC2Instance" },
 
 				{ "Fn::Sub": "sudo /opt/aws/bin/cfn-signal -s true --region ${AWS::Region} --stack ${AWS::StackName} --resource EC2Instance" }

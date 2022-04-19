@@ -1,0 +1,21 @@
+{
+	"EC2PolicyFirehose": {
+		"Type": "AWS::IAM::Policy",
+		"Properties": {
+            "PolicyName": "firehose",
+			"Roles": [{ "Ref": "EC2Role" }],
+			"PolicyDocument": {
+				"Version": "2012-10-17",
+				"Statement": [
+					{
+						"Effect": "Allow",
+						"Action": [
+                            "firehose:PutRecordBatch"
+                        ],
+						"Resource": { "Fn::Sub": "arn:aws:firehose:${AWS::Region}:${AWS::AccountId}:deliverystream/${StreamNameParam}" }
+					}
+				]
+			}
+		}
+	}
+}

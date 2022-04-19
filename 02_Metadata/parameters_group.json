@@ -30,7 +30,8 @@
 					"InstanceIPParam",
 					"LogTTLParam",
 					"S3BucketParam",
-					"EFSIDParam"
+					"EFSIDParam",
+					"StreamNameParam"
 				]
 			}
 		],
@@ -49,7 +50,8 @@
 			"InstanceIPParam": { "default" : "Instance Local IP" },
 			"LogTTLParam": { "default" : "Log Rotation TTL" },
 			"EFSIDParam": { "default" : "EFS ID" },
-			"S3BucketParam": { "default" : "S3 Bucket" }
+			"S3BucketParam": { "default" : "S3 Bucket" },
+			"StreamNameParam": { "default" : "Kinesis Firehose Stream Name" }
 		}
 	}
 }
